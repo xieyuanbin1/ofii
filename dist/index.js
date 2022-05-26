@@ -2,10 +2,9 @@
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-Object.defineProperty(exports, "__esModule", { value: true });
 var facenn_1 = __importDefault(require("facenn"));
 var imagecodec_1 = __importDefault(require("imagecodec"));
-function getFaceFeature(picture) {
+module.exports = function getFaceFeature(picture) {
     if (!picture) {
         return;
     }
@@ -36,5 +35,4 @@ function getFaceFeature(picture) {
         });
     }
     return faceFeatures;
-}
-exports.default = getFaceFeature;
+};

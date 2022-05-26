@@ -1,2 +1,3 @@
 /// <reference types="jsre-types" />
-export default function getFaceFeature(picture: Buffer | string): any[];
+declare const _default: (picture: Buffer | string) => any[];
+export = _default;

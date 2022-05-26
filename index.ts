@@ -2,7 +2,7 @@ import facenn from 'facenn'
 import imagecodec from 'imagecodec'
 
 // 获取图片上的人脸特征信息
-export default function getFaceFeature(picture: Buffer | string) {
+export = function getFaceFeature(picture: Buffer | string) {
   if (!picture) {
     return
   }
