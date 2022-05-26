@@ -13,3 +13,6 @@ import getFaceFeature from '@edgeros/ofii'
 
 const keys = getFaceFeature(imageBuffer)
 ```
+
+# Todo
+[ ] support image url.
