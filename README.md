@@ -1,5 +1,5 @@
 # ofii
-Obtaining facial information from images for EdgerOS.
+Obtaining facial information from images for EdgerOS APP.
 
 # Install
 ```shell

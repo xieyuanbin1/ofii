@@ -8,7 +8,7 @@ export default function getFaceFeature(picture: Buffer | string) {
   }
   const bitmap = imagecodec.decode(picture, {
     components: imagecodec.COMPONENTS_RGB
-  });
+  })
   if (!bitmap || !bitmap.buffer) {
     return
   }
@@ -32,5 +32,5 @@ export default function getFaceFeature(picture: Buffer | string) {
       faceFeatures.push(feature);
     })
   }
-  return faceFeatures;
+  return faceFeatures
 }
