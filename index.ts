@@ -2,11 +2,34 @@ import facenn from 'facenn'
 import imagecodec from 'imagecodec'
 
 // 获取图片上的人脸特征信息
-export = function getFaceFeature(picture: Buffer | string) {
+export = function getFaceFeature(picture: ArrayBuffer) {
   if (!picture) {
     return
   }
-  const bitmap = imagecodec.decode(picture, {
+  // 判断文件类型
+  let type = ''
+  const PNG = 'png'
+  // const JPG = 'jpg'
+  const arr = (new Uint8Array(picture)).subarray(0, 4)
+  const headerString = arr.reduce((acc, cur) => acc+cur.toString(16), '')
+  switch (headerString) {
+    case "89504e47":
+      type = "png";
+      break
+    case "47494638":
+      type = "gif";
+      break
+    case "ffd8ffe0":
+    case "ffd8ffe1":
+    case "ffd8ffe2":
+      type = "jpg"
+      break
+    default:
+      type = 'jpg'
+      console.log('[mime-type] not png/gif/jpg.')
+      break
+  }
+  const bitmap = imagecodec.decode(picture as any, {
     components: imagecodec.COMPONENTS_RGB
   })
   if (!bitmap || !bitmap.buffer) {

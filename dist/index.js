@@ -8,6 +8,27 @@ module.exports = function getFaceFeature(picture) {
     if (!picture) {
         return;
     }
+    var type = '';
+    var PNG = 'png';
+    var arr = (new Uint8Array(picture)).subarray(0, 4);
+    var headerString = arr.reduce(function (acc, cur) { return acc + cur.toString(16); }, '');
+    switch (headerString) {
+        case "89504e47":
+            type = "png";
+            break;
+        case "47494638":
+            type = "gif";
+            break;
+        case "ffd8ffe0":
+        case "ffd8ffe1":
+        case "ffd8ffe2":
+            type = "jpg";
+            break;
+        default:
+            type = 'jpg';
+            console.log('[mime-type] not png/gif/jpg.');
+            break;
+    }
     var bitmap = imagecodec_1.default.decode(picture, {
         components: imagecodec_1.default.COMPONENTS_RGB
     });

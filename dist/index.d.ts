@@ -1,3 +1,2 @@
-/// <reference types="jsre-types" />
-declare const _default: (picture: Buffer | string) => any[];
+declare const _default: (picture: ArrayBuffer) => any[];
 export = _default;
