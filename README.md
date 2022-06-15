@@ -9,7 +9,7 @@ facenn 模块的 detect() 方法和 feature() 方法支持从视频流中截取�
 npm install @edgeros/ofii
 ```
 
-# Useage
+# Usage
 
 ```typescript
 import getFaceFeature from '@edgeros/ofii'
