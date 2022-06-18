@@ -30,7 +30,7 @@ module.exports = function getFaceFeature(picture) {
             break;
     }
     var bitmap = imagecodec_1.default.decode(picture, {
-        components: imagecodec_1.default.COMPONENTS_RGB
+        components: type === PNG ? imagecodec_1.default.COMPONENTS_RGB_ALPHA : imagecodec_1.default.COMPONENTS_RGB
     });
     if (!bitmap || !bitmap.buffer) {
         return;
@@ -38,7 +38,7 @@ module.exports = function getFaceFeature(picture) {
     var faces = facenn_1.default.detect(bitmap.buffer, {
         width: bitmap.width,
         height: bitmap.height,
-        pixelFormat: facenn_1.default.PIX_FMT_RGB24
+        pixelFormat: type === PNG ? facenn_1.default.PIX_FMT_RGBA2RGB24 : facenn_1.default.PIX_FMT_RGB24
     }, true);
     var faceFeatures = [];
     if (faces.length) {
@@ -47,7 +47,7 @@ module.exports = function getFaceFeature(picture) {
             feature_1 = facenn_1.default.feature(bitmap.buffer, {
                 width: bitmap.width,
                 height: bitmap.height,
-                pixelFormat: facenn_1.default.PIX_FMT_RGB24
+                pixelFormat: type === PNG ? facenn_1.default.PIX_FMT_RGBA2RGB24 : facenn_1.default.PIX_FMT_RGB24
             }, item, {
                 live: true,
                 emotion: true

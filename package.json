@@ -1,6 +1,6 @@
 {
   "name": "@edgeros/ofii",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "obtaining facial information from images",
   "main": "dist/index.js",
   "scripts": {

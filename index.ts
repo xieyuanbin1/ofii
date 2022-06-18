@@ -30,7 +30,7 @@ export = function getFaceFeature(picture: ArrayBuffer) {
       break
   }
   const bitmap = imagecodec.decode(picture as any, {
-    components: imagecodec.COMPONENTS_RGB
+    components: type === PNG ? imagecodec.COMPONENTS_RGB_ALPHA : imagecodec.COMPONENTS_RGB
   })
   if (!bitmap || !bitmap.buffer) {
     return
@@ -38,7 +38,7 @@ export = function getFaceFeature(picture: ArrayBuffer) {
   const faces = facenn.detect(bitmap.buffer, {
     width: bitmap.width,
     height: bitmap.height,
-    pixelFormat: facenn.PIX_FMT_RGB24
+    pixelFormat: type === PNG ? facenn.PIX_FMT_RGBA2RGB24 : facenn.PIX_FMT_RGB24
   }, true)
   const faceFeatures = [];
   if (faces.length) {
@@ -47,7 +47,7 @@ export = function getFaceFeature(picture: ArrayBuffer) {
       feature = facenn.feature(bitmap.buffer, {
         width: bitmap.width,
         height: bitmap.height,
-        pixelFormat: facenn.PIX_FMT_RGB24
+        pixelFormat: type === PNG ? facenn.PIX_FMT_RGBA2RGB24 : facenn.PIX_FMT_RGB24
       }, item, {
         live: true,
         emotion: true
