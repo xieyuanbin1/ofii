@@ -1,8 +1,8 @@
-import facenn from 'facenn'
-import imagecodec from 'imagecodec'
+const facenn = require('facenn')
+const imagecodec = require('imagecodec')
 
 // 获取图片上的人脸特征信息
-export = function getFaceFeature(picture: ArrayBuffer) {
+module.exports = function getFaceFeature(picture) {
   if (!picture) {
     return
   }
@@ -29,7 +29,7 @@ export = function getFaceFeature(picture: ArrayBuffer) {
       console.log('[mime-type] not png/gif/jpg.')
       break
   }
-  const bitmap = imagecodec.decode(picture as any, {
+  const bitmap = imagecodec.decode(picture, {
     components: type === PNG ? imagecodec.COMPONENTS_RGB_ALPHA : imagecodec.COMPONENTS_RGB
   })
   if (!bitmap || !bitmap.buffer) {
@@ -50,7 +50,9 @@ export = function getFaceFeature(picture: ArrayBuffer) {
         pixelFormat: type === PNG ? facenn.PIX_FMT_RGBA2RGB24 : facenn.PIX_FMT_RGB24
       }, item, {
         live: true,
-        emotion: true
+        emotion: true,
+        male: true,
+        age: true
       })
       faceFeatures.push(feature);
     })

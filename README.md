@@ -13,8 +13,9 @@ npm install @edgeros/ofii
 
 ```typescript
 import getFaceFeature from '@edgeros/ofii'
-
+const imageBuffer = fs.readFile('./dog.png')
 const keys = getFaceFeature(imageBuffer)
+// 如果没有检测到人脸信息则返回 []
 ```
 
 # Todo

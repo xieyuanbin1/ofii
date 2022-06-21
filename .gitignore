@@ -23,3 +23,5 @@ yarn.lock
 *.sln
 *.sw?
 /temp
+
+/dist
